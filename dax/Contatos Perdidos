@@ -1,0 +1,5 @@
+Contatos Perdidos = 
+CALCULATE(
+    COUNTROWS('Leads InteGrum'),
+    'Leads InteGrum'[Fase] = "PERDIDO"
+)
