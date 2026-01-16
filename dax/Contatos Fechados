@@ -1,0 +1,8 @@
+Contatos Fechados 2 = 
+CALCULATE (
+    COUNTROWS ( 'Leads InteGrum' ),
+    FILTER (
+        ALLSELECTED ( 'Leads InteGrum' ),
+        CONTAINSSTRING ( UPPER ( TRIM ( 'Leads InteGrum'[Fase] ) ), "FECHADO" )
+    )
+)
