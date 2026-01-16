@@ -1,0 +1,8 @@
+Total Não Fechados = 
+CALCULATE (
+    COUNTROWS ( 'Leads InteGrum' ),
+    FILTER (
+        ALLSELECTED ( 'Leads InteGrum' ),
+        NOT CONTAINSSTRING ( UPPER ( TRIM ( 'Leads InteGrum'[Fase] ) ), "FECHADO" )
+    )
+)
