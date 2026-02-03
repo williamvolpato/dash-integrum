@@ -1,0 +1,5 @@
+Taxa Conversão (Consulta → Tratamento) = 
+DIVIDE(
+    [Pacientes Convertidos],
+    [Pacientes com Consulta]
+)
