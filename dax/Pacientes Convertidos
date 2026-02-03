@@ -1,0 +1,31 @@
+Pacientes Convertidos = 
+VAR Resumo =
+    ADDCOLUMNS(
+        VALUES(Financeiro[ID]),
+        "DtConsulta",
+            CALCULATE(
+                MIN(Financeiro[Data da Consulta]),
+                Financeiro[Tipo] IN {
+                    "CONSULTA GERAL",
+                    "CONSULTA DTM/BRUXISMO"
+                },
+                NOT ISBLANK(Financeiro[Data da Consulta]),
+                REMOVEFILTERS(Financeiro[Tipo])
+            ),
+        "DtTrat",
+            CALCULATE(
+                MIN(Financeiro[Data da Consulta]),
+                Financeiro[Tipo] = "TRATAMENTO",
+                NOT ISBLANK(Financeiro[Data da Consulta]),
+                REMOVEFILTERS(Financeiro[Tipo])
+            )
+    )
+RETURN
+COUNTROWS(
+    FILTER(
+        Resumo,
+        NOT ISBLANK([DtConsulta]) &&
+        NOT ISBLANK([DtTrat]) &&
+        [DtTrat] >= [DtConsulta]
+    )
+)
