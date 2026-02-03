@@ -1,0 +1,10 @@
+Pacientes com Consulta = 
+CALCULATE(
+    DISTINCTCOUNT(Financeiro[ID]),
+    Financeiro[Tipo] IN {
+        "CONSULTA GERAL",
+        "CONSULTA DTM/BRUXISMO"
+    },
+    NOT ISBLANK(Financeiro[Data da Consulta]),
+    REMOVEFILTERS(Financeiro[Tipo])
+)
